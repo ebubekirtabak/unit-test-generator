@@ -15,7 +15,7 @@
 		"workspaceContains:**/.unittestgeneratorconfig",
 		"onLanguage:typescript"
 	],
-	"main": "./extension.js",
+	"main": "./src/extension.js",
 	"contributes": {
 		"commands": [
 			{
