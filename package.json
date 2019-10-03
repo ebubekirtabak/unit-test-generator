@@ -10,7 +10,8 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.helloWorld",
+		"onCommand:extension.generateUnitTest",
 		"workspaceContains:**/.unittestgeneratorconfig",
 		"onLanguage:typescript"
 	],
@@ -19,8 +20,15 @@
 		"commands": [
 			{
 				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"title": "Hello World",
+				"category": "Extension Listener"
+			},
+			{
+				"command": "extension.generateUnitTest",
+				"title": "Generate Unit Test",
+				"category": "Extension Listener"
 			}
+		],
 		]
 	},
 	"scripts": {
