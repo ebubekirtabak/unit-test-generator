@@ -11,6 +11,8 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.helloWorld"
+		"workspaceContains:**/.unittestgeneratorconfig",
+		"onLanguage:typescript"
 	],
 	"main": "./extension.js",
 	"contributes": {
