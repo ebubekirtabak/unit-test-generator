@@ -29,7 +29,14 @@
 				"category": "Extension Listener"
 			}
 		],
-		]
+		"keybindings": [
+			{
+			  "command": "extension.generateUnitTest",
+			  "key": "ctrl+alt+u",
+			  "mac": "cmd+alt+u",
+			  "when": "editorTextFocus"
+			}
+		  ]
 	},
 	"scripts": {
 		"test": "node ./test/runTest.js"
