@@ -18,25 +18,25 @@ function activate(context) {
 	});
 
 	let disposableUnitTestGenerate = vscode.commands.registerCommand('extension.generateUnitTest', function () {
-        const { activeTextEditor } = vscode.window;
+    const { activeTextEditor } = vscode.window;
 
-        if (activeTextEditor) {
-            const { document } = activeTextEditor;
-            if (document) {
-				const documentText = document.getText();
-                /*
-                  build your textEdits similarly to the above with insert, delete, replace 
-                  but not within an editBuilder arrow function
-				  const textEdits: vscode.TextEdit[] = [];
-				  textEdits.push(vscode.TextEdit.replace(...));
-				  textEdits.push(vscode.TextEdit.insert(...));
-                */
+    if (activeTextEditor) {
+      const { document } = activeTextEditor;
+      if (document) {
+			  const documentText = document.getText();
+        /*
+        build your textEdits similarly to the above with insert, delete, replace
+        but not within an editBuilder arrow function
+			  const textEdits: vscode.TextEdit[] = [];
+			  textEdits.push(vscode.TextEdit.replace(...));
+			  textEdits.push(vscode.TextEdit.insert(...));
+        */
 
-                const workEdits = new vscode.WorkspaceEdit();
-                //workEdits.set(document.uri, textEdits); // give the edits
-                vscode.workspace.applyEdit(workEdits); // apply the edits
-            }
-        }
+        const workEdits = new vscode.WorkspaceEdit();
+        //workEdits.set(document.uri, textEdits); // give the edits
+        vscode.workspace.applyEdit(workEdits); // apply the edits
+      }
+    }
 
 		vscode.window.showInformationMessage('Generate UnitTest ');
 	});
