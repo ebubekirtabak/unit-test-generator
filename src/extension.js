@@ -37,7 +37,6 @@ function activate(context) {
 
 		vscode.window.showInformationMessage('Generate UnitTest ');
 	});
-	context.subscriptions.push(disposable);
 	context.subscriptions.push(disposableUnitTestGenerate);
 }
 exports.activate = activate;
