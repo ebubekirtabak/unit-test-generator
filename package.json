@@ -12,7 +12,8 @@
 	"activationEvents": [
 		"onCommand:extension.generateUnitTest",
 		"workspaceContains:**/.unittestgeneratorconfig",
-		"onLanguage:typescript"
+    "onLanguage:typescript",
+    "onLanguage:javascript"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
