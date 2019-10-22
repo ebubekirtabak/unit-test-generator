@@ -1,7 +1,8 @@
 import { Constants } from "../constants";
+import { BlockModel } from "../models/block.model";
 
 export class TypeScriptParser {
-
+  targetBlock: BlockModel;
   testCode = `
   import { workspace, Uri } from "vscode";
 import {
