@@ -51,6 +51,12 @@ export class AppConfiguration {
   parse() {
     const regexp = new RegExp(Constants.FUNCTION_NAME_REGEX);
     const functions = regexp.test(this.testCode);
+    let index = 0;
+    while(index < this.testCode.length) {
+      const blockIndex = this.getIndexByRegexp(this.testCode);
+      index = blockIndex.lastIndex;
+    }
+
     console.log(functions);
   }
 
