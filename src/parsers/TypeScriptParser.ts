@@ -53,4 +53,13 @@ export class AppConfiguration {
     const functions = regexp.test(this.testCode);
     console.log(functions);
   }
+
+  getRegexMatch(key: RegExp, text: string) {
+    try {
+      const regexp = new RegExp(key);
+      return regexp.exec(text);
+    } catch(_) {
+      return null;
+    }
+  }
 }
