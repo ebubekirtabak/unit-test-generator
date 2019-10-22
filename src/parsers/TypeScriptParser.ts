@@ -54,6 +54,22 @@ export class AppConfiguration {
     console.log(functions);
   }
 
+  getIndexByRegexp(code: string) {
+    const regexpRange = { firstIndex: -1, lastIndex: -1};
+    for(let i = 0; i < Constants.keywordList.length; ++i) {
+      const keyword = Constants.keywordList[i];
+      const match = this.getRegexMatch(keyword.regexp, code);
+      const { index } = match || { index: -1 };
+      if (index !== null && index > -1) {
+        const matchNextIndex = this.getRegexMatch(keyword.regexp, code.substring(index, code.length));
+        { }
+        break;
+      }
+    }
+
+    return regexpRange;
+  }
+
   getRegexMatch(key: RegExp, text: string) {
     try {
       const regexp = new RegExp(key);
