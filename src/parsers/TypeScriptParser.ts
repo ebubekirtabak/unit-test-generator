@@ -62,19 +62,29 @@ export class AppConfiguration {
   }
 
   getIndexByRegexp(code: string) {
-    const regexpRange = { firstIndex: -1, lastIndex: -1};
+    let regexpIndex = { index: -1, keyword: <KeywordModel>{} };
     for(let i = 0; i < Constants.keywordList.length; ++i) {
       const keyword = Constants.keywordList[i];
       const match = this.getRegexMatch(keyword.regexp, code);
-      const { index } = match || { index: -1 };
+      const { index } = match;
       if (index !== null && index > -1) {
-        const matchNextIndex = this.getRegexMatch(keyword.regexp, code.substring(index, code.length));
-        { }
+        regexpIndex.index = index;
+        regexpIndex.keyword = keyword;
         break;
       }
     }
 
-    return regexpRange;
+    return regexpIndex;
+  }
+
+  getNextRegexp(code: string, keyword: KeywordModel) {
+    switch(keyword.anotherKeyword) {
+      case 'any':
+        return this.getIndexByRegexp(code);
+        break;
+      default:
+        return this.getRegexMatch(keyword.regexp, code);
+    }
   }
 
   getRegexMatch(key: RegExp, text: string) {
