@@ -80,9 +80,9 @@ export class AppConfiguration {
   getRegexMatch(key: RegExp, text: string) {
     try {
       const regexp = new RegExp(key);
-      return regexp.exec(text);
+      return regexp.exec(text) || { index: -1 };
     } catch(_) {
-      return null;
+      return { index: -1 };
     }
   }
 }
