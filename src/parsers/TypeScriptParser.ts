@@ -64,6 +64,17 @@ export class AppConfiguration {
     console.log(functions);
   }
 
+  getCodePart(code: string) {
+    const firstRegexp = this.getIndexByRegexp(this.testCode);
+    const { index, keyword } = firstRegexp;
+    const regexpSource = keyword.regexp.source;
+    const startIndex = (index + regexpSource.length);
+    const nextCode = code.substr(startIndex, code.length);
+    const lastRegexp = this.getNextRegexp(nextCode, keyword);
+    const cropCode = code.substr(0, (startIndex + lastRegexp.index));
+    console.log(cropCode.trim());
+    return (startIndex + lastRegexp.index);
+  }
   getIndexByRegexp(code: string) {
     let regexpIndex = { index: -1, keyword: <KeywordModel>{} };
     for(let i = 0; i < Constants.keywordList.length; ++i) {
