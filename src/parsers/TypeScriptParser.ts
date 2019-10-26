@@ -101,6 +101,15 @@ export class AppConfiguration {
     }
   }
 
+  codePartParser(code: string, keyword: KeywordModel) {
+    keyword.childs.forEach(element => {
+      const match = this.getRegexMatch(element.regexp, code);
+      code = code.substr(match.index, code.length);
+      console.log(code);
+      console.log(match);
+    });
+  }
+
   getRegexMatch(key: RegExp, text: string) {
     try {
       const regexp = new RegExp(key);
