@@ -73,6 +73,7 @@ export class AppConfiguration {
     const lastRegexp = this.getNextRegexp(nextCode, keyword);
     const cropCode = code.substr(0, (startIndex + lastRegexp.index));
     console.log(cropCode.trim());
+    this.codePartParser(cropCode.trim(), keyword);
     return (startIndex + lastRegexp.index);
   }
   getIndexByRegexp(code: string) {
