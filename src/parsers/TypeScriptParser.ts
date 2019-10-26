@@ -1,5 +1,6 @@
 import { Constants } from "../constants";
 import { BlockModel } from "../models/block.model";
+import { KeywordModel } from "../models/keyword.model";
 
 export class TypeScriptParser {
   targetBlock: BlockModel;
@@ -53,10 +54,12 @@ export class AppConfiguration {
     const regexp = new RegExp(Constants.FUNCTION_NAME_REGEX);
     const functions = regexp.test(this.testCode);
     let index = 0;
-    while(index < this.testCode.length) {
-      const blockIndex = this.getIndexByRegexp(this.testCode);
-      index = blockIndex.lastIndex;
+    do {
+      this.testCode = this.testCode.substr(index, this.testCode.length);
+      index = this.getCodePart(this.testCode);
+      console.log(index);
     }
+    while(index < this.testCode.length);
 
     console.log(functions);
   }
