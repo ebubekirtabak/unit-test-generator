@@ -96,7 +96,6 @@ export class AppConfiguration {
     switch(keyword.anotherKeyword) {
       case 'any':
         return this.getIndexByRegexp(code);
-        break;
       default:
         return this.getRegexMatch(keyword.regexp, code);
     }
