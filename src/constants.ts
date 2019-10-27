@@ -11,10 +11,10 @@ export class Constants {
         { name: 'from', regexp: Constants.SINGLE_STRING_REGEX }
       ]
     },
-    { regexp: Constants.CLASS_NAME_REGEX, name: 'class', anotherKeyword: 'any' },
-    { regexp: Constants.FUNCTION_NAME_REGEX, name: 'function', anotherKeyword: 'any' },
-    { regexp: /export/g, name: 'export', anotherKeyword: 'any' },
-    { regexp: /'"' ~('"')+ '"'/g, name: 'double string', anotherKeyword: 'any' },
+    { regexp: Constants.CLASS_NAME_REGEX, name: 'class', anotherKeyword: 'any', childs: [] },
+    { regexp: Constants.FUNCTION_NAME_REGEX, name: 'function', anotherKeyword: 'any', childs: [] },
+    { regexp: /export/g, name: 'export', anotherKeyword: 'any', childs: [] },
+    { regexp: /'"' ~('"')+ '"'/g, name: 'double string', anotherKeyword: 'any', childs: [] },
   ];
 
   constructor() {
