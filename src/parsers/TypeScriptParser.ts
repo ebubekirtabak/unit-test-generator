@@ -51,8 +51,6 @@ export class AppConfiguration {
   `;
 
   parse() {
-    const regexp = new RegExp(Constants.FUNCTION_NAME_REGEX);
-    const functions = regexp.test(this.testCode);
     let index = 0;
     do {
       this.testCode = this.testCode.substr(index, this.testCode.length);
@@ -60,8 +58,6 @@ export class AppConfiguration {
       console.log(index);
     }
     while(index < this.testCode.length);
-
-    console.log(functions);
   }
 
   getCodePart(code: string) {
