@@ -1,6 +1,7 @@
 import { Constants } from "../constants";
 import { BlockModel } from "../models/block.model";
 import { KeywordModel } from "../models/keyword.model";
+import { RegexParser } from "./RegexParser";
 
 export class TypeScriptParser {
   targetBlock: BlockModel;
@@ -76,7 +77,7 @@ export class AppConfiguration {
     let regexpIndex = { index: -1, keyword: <KeywordModel>{} };
     for(let i = 0; i < Constants.keywordList.length; ++i) {
       const keyword = Constants.keywordList[i];
-      const match = this.getRegexMatch(keyword.regexp, code);
+      const match = new RegexParser().getRegexMatch(keyword.regexp, code);
       const { index } = match;
       if (index !== null && index > -1) {
         regexpIndex.index = index;
@@ -93,7 +94,7 @@ export class AppConfiguration {
       case 'any':
         return this.getIndexByRegexp(code);
       default:
-        return this.getRegexMatch(keyword.regexp, code);
+        return new RegexParser().getRegexMatch(keyword.regexp, code);
     }
   }
 
@@ -106,12 +107,5 @@ export class AppConfiguration {
     });
   }
 
-  getRegexMatch(key: RegExp, text: string) {
-    try {
-      const regexp = new RegExp(key);
-      return regexp.exec(text) || { index: -1 };
-    } catch(_) {
-      return { index: -1 };
-    }
-  }
+
 }
