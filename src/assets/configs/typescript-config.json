@@ -1,0 +1,32 @@
+{
+  "type": "json",
+  "language": "typescript",
+  "version": 1,
+  "expressions": [
+    {
+      "expression": "/import/g", "name": "import", "anotherKeyword": "any", "childs": [
+        {
+          "name": "imports", "regexp": "/(?<={)(.*)(?=})/g", "then": [
+            { "process": "split", "value": ",", "referanceName": "import" }
+          ]
+        },
+        { "name": "from", "regexp": "/(?<=')(.*)(?=')|(?<=\")(.*)(?=\")/g", "then": [] }
+      ]
+    },
+    {
+      "expression": "/(class)\\s([^\n\\s]*)|(export class)\\s([^\n\\s]*)|(export default class)\\s([^\n\\s]*)/g",
+      "name": "class",
+      "anotherKeyword": "any",
+      "childs": []
+    },
+    {
+      "expression": "/([a-zA-Z_{1}][a-zA-Z0-9_]+)(?=\\()/g", "name": "function", "anotherKeyword": "any", "childs": []
+    },
+    {
+      "expression": "/export/g", "name": "export", "anotherKeyword": "any", "childs": []
+    },
+    {
+      "expression": "/'\"' ~('\"')+ '\"'/g", "name": "double string", "anotherKeyword": "any", "childs": []
+    }
+  ]
+}
