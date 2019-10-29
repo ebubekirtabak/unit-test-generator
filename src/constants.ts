@@ -3,4 +3,8 @@ export class Constants {
 
   constructor() {
   }
+
+  getLanguageConfig() {
+    return TypScriptConfigs;
+  }
 }
