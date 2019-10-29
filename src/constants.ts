@@ -1,21 +1,5 @@
-import { KeywordModel } from "./models/keyword.model";
-
+import * as TypScriptConfigs from "./assets/configs/typescript-config.json";
 export class Constants {
-  static FUNCTION_NAME_REGEX = /([a-zA-Z_{1}][a-zA-Z0-9_]+)(?=\()/g;
-  static CODE_BLOCK_REGEX = /({[a-z]*\n[\s\S]*?\n})|({[a-z]*[\s\S]*?})/g;
-  static CLASS_NAME_REGEX = /(class)\s([^\n\s]*)|(export class)\s([^\n\s]*)|(export default class)\s([^\n\s]*)/g;
-  static keywordList = [
-    {
-      regexp: /import/g, name: 'import', anotherKeyword: 'any', childs: [
-        { name: 'imports', regexp: Constants.CODE_BLOCK_REGEX, splitBy: ',' },
-        { name: 'from', regexp: Constants.SINGLE_STRING_REGEX }
-      ]
-    },
-    { regexp: Constants.CLASS_NAME_REGEX, name: 'class', anotherKeyword: 'any', childs: [] },
-    { regexp: Constants.FUNCTION_NAME_REGEX, name: 'function', anotherKeyword: 'any', childs: [] },
-    { regexp: /export/g, name: 'export', anotherKeyword: 'any', childs: [] },
-    { regexp: /'"' ~('"')+ '"'/g, name: 'double string', anotherKeyword: 'any', childs: [] },
-  ];
 
   constructor() {
   }
