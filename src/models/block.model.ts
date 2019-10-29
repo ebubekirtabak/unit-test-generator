@@ -5,4 +5,5 @@ export interface BlockModel {
   blockIsOpen: boolean;
   startIndex: number;
   closeIndex: number;
+  import: string[];
 }
