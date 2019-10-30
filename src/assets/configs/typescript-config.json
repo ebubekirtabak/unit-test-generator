@@ -4,7 +4,7 @@
   "version": 1,
   "expressions": [
     {
-      "expression": "/^.*\\s\b(import)\b.*\\s/g", "name": "import", "anotherKeyword": "any", "childs": [
+      "expression": "((?:import)\\s*{\\s*([^}]+)}\\s*from\\s*([^}]+);\\s(?=import))|(?:import\\s*{\\s*([^}]+)}\\s*from\\s*([^}]+);\\s)", "name": "import", "anotherKeyword": "any", "childs": [
         {
           "name": "imports", "regexp": "/(?<={)(.*)(?=})/g", "then": [
             { "process": "split", "value": ",", "referanceName": "import" }
