@@ -8,6 +8,7 @@ export class TestGeneratorCodeLensProvider implements CodeLensProvider {
   }
 
   async provideCodeLenses(document: TextDocument): Promise<CodeLens[]> {
+    console.log(document);
     let topOfDocument = new Range(0, 0, 0, 0);
 
     let c: Command = {
