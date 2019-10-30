@@ -1,10 +1,12 @@
 import { Constants } from "../constants";
 import { BlockModel } from "../models/block.model";
-import { KeywordModel } from "../models/keyword.model";
+import { ExpressionModel } from "../models/expression.model";
 import { RegexParser } from "./RegexParser";
 
 export class TypeScriptParser {
   targetBlock: BlockModel;
+  codeBlocks: BlockModel[];
+  public configs: any;
   testCode = `
   import { workspace, Uri } from "vscode";
 import {
@@ -51,6 +53,10 @@ export class AppConfiguration {
 }
   `;
 
+  constructor() {
+    this.configs = new Constants().getLanguageConfig();
+  }
+
   parse() {
     let index = 0;
     do {
@@ -63,24 +69,32 @@ export class AppConfiguration {
 
   getCodePart(code: string) {
     const firstRegexp = this.getIndexByRegexp(this.testCode);
-    const { index, keyword } = firstRegexp;
-    const regexpSource = keyword.regexp.source;
-    const startIndex = (index + regexpSource.length);
+    const { index, keyword, match } = firstRegexp;
+    const text = match[0];
+    const startIndex = (index + text.length);
     const nextCode = code.substr(startIndex, code.length);
     const lastRegexp = this.getNextRegexp(nextCode, keyword);
-    const cropCode = code.substr(0, (startIndex + lastRegexp.index));
+    const lastIndex = lastRegexp.index || index;
+    const cropCode = code.substr(0, (startIndex + lastIndex));
     console.log(cropCode.trim());
+
     this.codePartParser(cropCode.trim(), keyword);
     return (startIndex + lastRegexp.index);
   }
+
+  getRegexpRange() {
+
+  }
+
   getIndexByRegexp(code: string) {
-    let regexpIndex = { index: -1, keyword: <KeywordModel>{} };
-    for(let i = 0; i < Constants.keywordList.length; ++i) {
-      const keyword = Constants.keywordList[i];
-      const match = new RegexParser().getRegexMatch(keyword.regexp, code);
+    let regexpIndex = { index: -1, keyword: <ExpressionModel>{}, match: <RegExpExecArray>{} };
+    for(let i = 0; i < this.configs.expressions.length; ++i) {
+      const keyword = this.configs.expressions[i];
+      const match = new RegexParser().getRegexMatch(keyword.expression, code);
       const { index } = match;
       if (index !== null && index > -1) {
         regexpIndex.index = index;
+        regexpIndex.match = match;
         regexpIndex.keyword = keyword;
         break;
       }
@@ -89,7 +103,7 @@ export class AppConfiguration {
     return regexpIndex;
   }
 
-  getNextRegexp(code: string, keyword: KeywordModel) {
+  getNextRegexp(code: string, keyword: ExpressionModel) {
     switch(keyword.anotherKeyword) {
       case 'any':
         return this.getIndexByRegexp(code);
@@ -98,12 +112,9 @@ export class AppConfiguration {
     }
   }
 
-  codePartParser(code: string, keyword: KeywordModel) {
+  codePartParser(code: string, keyword: ExpressionModel) {
     keyword.childs.forEach(element => {
-      const match = this.getRegexMatch(element.regexp, code);
-      code = code.substr(match.index, code.length);
-      console.log(code);
-      console.log(match);
+
     });
   }
 
