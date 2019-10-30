@@ -3,8 +3,11 @@ import { RegexParser } from "./RegexParser";
 import { BlockModel } from "../models/block.model";
 
 export class ChildParser {
-  constructor(targetBlock: BlockModel) {
 
+  targetBlock: BlockModel;
+
+  constructor(targetBlock: BlockModel) {
+    this.targetBlock = targetBlock;
   }
 
   childParser(code: string, childKeyword: ExpressionChildModel) {
@@ -12,7 +15,6 @@ export class ChildParser {
     if (regexp) {
       const match = new RegexParser().getRegexMatch(regexp, code);
       code = code.substr(match.index, code.length);
-
       console.log(code);
       console.log(match[0].split(','));
     }
