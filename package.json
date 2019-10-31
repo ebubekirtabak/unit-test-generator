@@ -1,8 +1,8 @@
 {
 	"name": "unit-test-generator",
 	"displayName": "unit-test-generator",
-  "description": "Automatic unit test code genrator.",
-  "publisher": "ebubekirtabak",
+	"description": "Automatic unit test code genrator.",
+	"publisher": "ebubekirtabak",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.38.0"
