@@ -31,12 +31,12 @@
 		],
 		"keybindings": [
 			{
-			  "command": "extension.generateUnitTest",
-			  "key": "ctrl+alt+u",
-			  "mac": "cmd+alt+u",
-			  "when": "editorTextFocus"
+				"command": "extension.generateUnitTest",
+				"key": "ctrl+alt+u",
+				"mac": "cmd+alt+u",
+				"when": "editorTextFocus"
 			}
-		  ]
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
